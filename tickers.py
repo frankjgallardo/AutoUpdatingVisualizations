@@ -1,8 +1,11 @@
-import pandas as pd
+
 import matplotlib.pyplot as plt
 from config import IEX_API_Key
 import boto3
+import pandas as pd
 
+
+pd.__version__
 tickers = [
     'JPM',
     'MS',
@@ -88,8 +91,8 @@ plt.xlabel("Stock Prices")
 
 plt.tight_layout()
 
-
+plt.savefig('bank_data.png')
 # Send file to AWS S3 bucket
 
 s3 = boto3.resource('s3')
-s3.meta.client.upload_file('bank_data.png', 'iex-visualizations', 'bank_data.png', ExtraArgs={'ACL':'public-read'})
+s3.meta.client.upload_file('bank_data.png', 'iex-vis', 'bank_data.png', ExtraArgs={'ACL':'public-read'})
